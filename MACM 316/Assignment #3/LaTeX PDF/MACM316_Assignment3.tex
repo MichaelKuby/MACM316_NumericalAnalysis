@@ -1,6 +1,6 @@
 \documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
 \usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\geometry{letterpaper, margin=.5in}                   		% ... or a4paper or a5paper or ... 
 %\geometry{landscape}                		% Activate for rotated page geometry
 %\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
@@ -13,45 +13,53 @@
 
 \begin{document}
 
-\begin{wrapfigure}[0]{r}{0.5\textwidth}
-\centering
-\includegraphics [scale=.18] {Plot_Abs_Error.png}
+\section*{Part A}
+
+\begin{wrapfigure}[16]{r}{0.5\textwidth}
+\begin{flushright}
+\includegraphics [scale=.25] {Plot_Abs_Error.png}
+\end{flushright}
 \end{wrapfigure}
 
-\subsubsection*{Part A}
-
+Methodology: I used a set number of iterations for all aspects of this project, with $n = 25$.
+\flushleft
 1. Method 2\\
 2. Method 4\\
-3. Method 3\\
-4. Method 1
+3. Method 1\\
+4. Method 3\\
+$~~$\\
+Note that method 3 converges second fastest, but is set up as a root finding problem, so it converges to 0, not to the desired solution.\\ 
 
-$~~~~~$
-\\
+\section*{Part B}
 
-\subsubsection*{Part B}
+Methods 1, 2, and 4 are set up as fixed-point problems: they search for where $g(x) = x$. The fewer iterations required for their absolute errors to equal 0, the faster the convergence. From the graph of the absolute errors: method 2 converges fastest, then method 4, then method 1. Method 3 is a root-finding problem of the form $f(x) = g(x) - x = 0$ where $g(x) = x$. For large enough $n$ we have $p_n = 0$, so $|p_n - p| = | 0 - p | = p$. Thus it diverges from our desired solution, but the sequence produced converges to 0, while the absolute error at $n$ converges to $19^{1/3}$ for large enough $n$.
 
-\begin{wrapfigure}[8]{r}{0.5\textwidth}
-\centering
-\includegraphics [scale=.54] {Table_AbsErrors.png}
-\end{wrapfigure}
+\section*{Part C}
 
-Methods 1, 2, and 4 are set up as fixed-point problems: they search for where $g(x) = x$. The fewer iterations required for their absolute errors to equal 0, the faster the convergence. So we see from the graph that method 2 converges fastest, then method 4, then method 1.
-\\
-Method 3 is a root-finding problem of the form $f(x) = g(x) - x = 0$ where $g(x) = x$. Since $p_n = 0$, $|p_n - p| = | 0 - p | = p$. Once the absolute error for method 3 converges to a value, the solution has been found. Here it has found the root to 5 significant digits after the $6^{th}$ iteration from the table of absolute error values. Similarly, method 2 converged to a solution by the $5^{th}$ iteration.
+My sincerest thanks to Garrett during workshop hours for assistance with the following process. Let $|p_{n} - p| = e_n$, then $\frac{e_{n+1} }{e_n^\alpha} \approx \lambda \Rightarrow e_{n+1} \approx \lambda e_n ^ \alpha$  for large n. Now consider:
 
-\subsubsection*{Part C}
+\begin{center}
+$e_{n+2} \approx \lambda e_{n+1} ^ \alpha$ \\ 
+$~$\\
+$\Rightarrow \frac{e_{n+2}}{e_{n+1}} \approx \frac{\lambda e_{n+1} ^ \alpha}{\lambda e_{n} ^ \alpha} = \frac{e_{n+1} ^ \alpha}{e_{n} ^ \alpha}$\\
+$~$\\
+$\Rightarrow \log \frac{e_n+2}{e_n+1} \approx \log \frac{e_{n+1} ^ \alpha}{e_{n} ^ \alpha} = \alpha( \log e_{n+1} - \log e_n ) = \alpha \log \frac{e_{n+1}}{e_n}$\\
+$~$\\
+$\Rightarrow \alpha \approx \frac{ log ( \frac {e_{n+2}}{e_{n+1}} )}{ log ( \frac {e_{n+1}}{e_{n}} )}$
+\end{center}
 
-Asymptotic error constants were computed using elementwise division and power operations. $p_{n}$ and $p_{n+1}$ are the extraction of all columns and the $2^{nd} : n^{th}$ rows and $1^{st} : n-1^{th}$ rows of the absolute error matrix, respectively. $\lambda$'s for $n = 2:n-1$ were computed.
+By first solving for $\alpha$, I then solved for $\frac{e_{n+1} }{e_n^\alpha} \approx \lambda$, for each method. Note that I used $n = 25$ iterations throughout.
 
 \begin{itemize}
 
-\item Method 1: For $n \ge 192$, $\alpha = 1$, $\frac{|p_{n+1} - p|}{{|p_n - p|}^\alpha} = 1$. So, this sequence converges to $p$ of order $1$ with asymptotic error constant $\lambda = 1$.
+\item Method 1: For $n = 25$, $\alpha \approx  0.9994$, $\lambda \approx 0.8391$. So, this sequence converges to $p$ of order $1$ with asymptotic error constant $\lambda \approx 0.8391 < 1$ and the sequence is said to be linearly convergent.
 
-\item Method 2: For $n \ge 5$, $\alpha = 1$, $\frac{|p_{n+1} - p|}{{|p_n - p|}^\alpha} = \frac{0}{0}$, which is undefined.
+\item Method 2: For $n = 25$ this sequences converged to $p$, so $\frac{|p_{n+1} - p|}{{|p_n - p|}^\alpha} = \frac{0}{0}$, which is undefined.
 
-\item Method 3: For $n \ge 17$, $\alpha = 2$, $\frac{|p_{n+1} - p|}{{|p_n - p|}^\alpha} = 0.374756176784315$. So, this sequence converges to $p$ of order $2$ with asymptotic error constant $\lambda = 0.374756176784315$, and this sequence is said to be quadratically convergent.
+\item Method 3: For $n = 25$, $\alpha \approx \frac{ log ( \frac {e_{n+2}}{e_{n+1}} )}{ log ( \frac {e_{n+1}}{e_{n}} ) } = \frac{0}0$, which is undefined.
 
-\item Method 4: For $n \ge 52$, $\alpha = 1$, $\frac{|p_{n+1} - p|}{{|p_n - p|}^\alpha} = \frac{0}{0}$, which is undefined.
+\item Method 4: For $n = 25$, $\alpha \approx 1$, $\lambda \approx 0.5$. So this sequence converges to $p$ of order $1$ with asymptotic error constant $\lambda \approx 0.5 < 1$ and the sequence is said to be linearly convergent.
 
 \end{itemize}
+
 \end{document}  

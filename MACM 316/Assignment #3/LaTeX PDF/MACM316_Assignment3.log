@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.11)  11 MAR 2023 18:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.1.11)  13 MAR 2023 18:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -121,15 +121,15 @@ LaTeX Font Info:    ... okay on input line 14.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
-* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* h-part:(L,W,R)=(36.135pt, 542.02501pt, 36.135pt)
+* v-part:(T,H,B)=(36.135pt, 722.7pt, 36.135pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=430.00462pt
-* \textheight=556.47656pt
-* \oddsidemargin=19.8752pt
-* \evensidemargin=19.8752pt
-* \topmargin=-13.87262pt
+* \textwidth=542.02501pt
+* \textheight=722.7pt
+* \oddsidemargin=-36.135pt
+* \evensidemargin=-36.135pt
+* \topmargin=-73.135pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=11.0pt
@@ -172,57 +172,51 @@ e
 <Plot_Abs_Error.png, id=1, 1124.2pt x 843.15pt>
 File: Plot_Abs_Error.png Graphic file (type png)
 <use Plot_Abs_Error.png>
-Package pdftex.def Info: Plot_Abs_Error.png  used on input line 18.
-(pdftex.def)             Requested size: 202.34726pt x 151.76045pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+Package pdftex.def Info: Plot_Abs_Error.png  used on input line 20.
+(pdftex.def)             Requested size: 281.04932pt x 210.78697pt.
 
+Overfull \hbox (10.03682pt too wide) in paragraph at lines 20--21
+ []
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 24.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 24.
 
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 28--30
-
- []
-
-<Table_AbsErrors.png, id=2, 325.215pt x 144.54pt>
-File: Table_AbsErrors.png Graphic file (type png)
-<use Table_AbsErrors.png>
-Package pdftex.def Info: Table_AbsErrors.png  used on input line 35.
-(pdftex.def)             Requested size: 175.61348pt x 78.05042pt.
-[1
+) [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Plot_
-Abs_Error.png (PNG copy)> <./Table_AbsErrors.png>] (./MACM316_Assignment3.aux) 
-) 
+Abs_Error.png (PNG copy)>] (./MACM316_Assignment3.aux) ) 
 Here is how much of TeX's memory you used:
- 2468 strings out of 478268
- 37797 string characters out of 5846347
- 335082 words of memory out of 5000000
- 20681 multiletter control sequences out of 15000+600000
- 474556 words of font info for 48 fonts, out of 8000000 for 9000
+ 2463 strings out of 478268
+ 37653 string characters out of 5846347
+ 340053 words of memory out of 5000000
+ 20676 multiletter control sequences out of 15000+600000
+ 474853 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,438b,184s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}
-</usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
-r/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
-local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local
-/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texli
-ve/2022/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on MACM316_Assignment3.pdf (1 page, 160223 bytes).
+ 55i,6n,62p,650b,215s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/202
+2/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2022/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2022/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts
+/type1/public/cm-super/sfrm1095.pfb>
+Output written on MACM316_Assignment3.pdf (1 page, 135801 bytes).
 PDF statistics:
- 63 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 60 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

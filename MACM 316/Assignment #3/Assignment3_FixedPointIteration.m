@@ -10,7 +10,7 @@ pn_4 = 2;
 
 p = (19)^(1/3);
 
-n = 500; % number of iterations
+n = 25; % number of iterations
 
 results = zeros(n, 4); % Up to n iterations for each of the 4 methods
 
@@ -51,12 +51,52 @@ xlabel("n")
 ylabel("Absolute Error")
 legend('Method 1', 'Method 2', 'Method 3', 'Method 4')
 
-lim = abs_errors(1:6,:);
-
 %% Part C
 
-pn = abs_errors(2:end, :);
-pnplus1 = abs_errors(1:end-1, :) ;
-alpha = 1;
+% method 1
 
-error_constant_lambda = pn ./ (pnplus1).^alpha;
+e_n2_1 = abs_errors(end, 1);
+e_n1_1 = abs_errors(end-1,1);
+e_n_1  = abs_errors(end-2,1);
+
+num_1 = log(e_n2_1) - log(e_n1_1);
+denom_1 = log(e_n1_1) - log(e_n_1);
+alpha_1 = num_1 / denom_1;
+
+lambda_1 = e_n1_1 / (e_n_1 ^ alpha_1);
+
+% method 2
+
+e_n2_2 = abs_errors(end, 2);
+e_n1_2 = abs_errors(end-1,2);
+e_n_2  = abs_errors(end-2,2);
+
+num_2 = log(e_n2_2) - log(e_n1_2);
+denom_2 = log(e_n1_2) - log(e_n_2);
+alpha_2 = num_2 / denom_2;
+
+lambda_2 = e_n1_2 / (e_n_2 ^ alpha_2);
+
+% method 3
+
+e_n2_3 = abs_errors(end, 3);
+e_n1_3 = abs_errors(end-1,3);
+e_n_3  = abs_errors(end-2,3);
+
+num_3 = log(e_n2_3) - log(e_n1_3);
+denom_3 = log(e_n1_3) - log(e_n_3);
+alpha_3 = num_3 / denom_3;
+
+lambda_3 = e_n1_3 / (e_n_3 ^ alpha_3);
+
+% method 4
+
+e_n2_4 = abs_errors(end, 4);
+e_n1_4 = abs_errors(end-1,4);
+e_n_4  = abs_errors(end-2,4);
+
+num_4 = log(e_n2_4) - log(e_n1_4);
+denom_4 = log(e_n1_4) - log(e_n_4);
+alpha_4 = num_4 / denom_4;
+
+lambda_4 = e_n1_4 / (e_n_4 ^ alpha_4);
