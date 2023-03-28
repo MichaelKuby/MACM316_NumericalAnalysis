@@ -4,7 +4,7 @@
 % 0.75, 1.0
 
 x = (0:.25:1);
-y = zeros(1, length(x));
+y = Inf(1, length(x));
 xx = 0:.01:1;
 
 for i = 1:length(x)    
@@ -23,13 +23,7 @@ plot(x,y, 'o', xx, ppval(f,xx), "LineWidth", 1)
 
 hold on
 
-% extract details from piece-wise polynomial by breaking it apart
-
-[breaks,coefs,l,k,d] = unmkpp(f);
-
-% make the polynomial that describes the derivative
-
-fprime = mkpp(breaks,repmat(k-1:-1:1,d*l,1).*coefs(:,1:k-1),d);
+fprime = calc_derivative(f);
 
 % plot the derivative of the polynomial
 
@@ -42,13 +36,7 @@ spline_val1 = ppval(fprime, 0.5);
 %% Part A Cont'd
 % Construction of the second derivative: 
 
-% extract details from piece-wise polynomial by breaking it apart
-
-[breaks2,coefs2,l2,k2,d2] = unmkpp(fprime);
-
-% make the polynomial that describes the derivative
-
-f2prime = mkpp(breaks2,repmat(k2-1:-1:1,d2*l2,1).*coefs2(:,1:k2-1),d2);
+f2prime = calc_derivative(fprime);
 
 % plot the derivative of the polynomial
 
@@ -57,6 +45,8 @@ legend ("Data", "S(x)", "S'(x)", "S''(x)")
 title("Spline of f(x) = e^{-x} - 1/2, computed at the data points, and its derivatives")
 xlabel("x, the input values")
 ylabel("S_{i}(x), the cubic spline interpolation output")
+
+hold off
 
 % evaluate the derivative at 0.5
 
@@ -72,3 +62,62 @@ actual_val2 = second_derivative(0.5);
 
 error_fprime = abs(spline_val1 - actual_val1);
 error_f2prime = abs(spline_val2 - actual_val2);
+
+%% Part B
+% Repeat Part A over the interval [0, 1] with equal node spacings 
+% h = 2^{−m} , m = 2,3,4,…. Try up to m = 16?
+
+m = 16;
+errors1 = Inf(1, m-1);
+errors2 = Inf(1, m-1);
+
+for i = 2:m
+    gap = 2^(-i);
+    input = 0:gap:1;
+    output = Inf(1, length(input));
+    for j = 1:length(input)
+        output(j) = func(input(j));
+    end
+    % construct the spline
+    s = spline(input, output);
+    
+    % compute the derivative
+    spline_prime = calc_derivative(s);
+    % Evaluate the derivative of the spline at 0.5
+    spline_prime_val = ppval(spline_prime, 0.5);
+
+    % compute the second derivative
+    spline_prime2 = calc_derivative(spline_prime);
+    % Evaluate the derivative of the spline at 0.5
+    spline_prime2_val = ppval(spline_prime2, 0.5);
+
+    % compute the error for the first derivative
+    error1 = abs(spline_prime_val - derivative(0.5));
+    
+    % store the error
+    errors1(i-1) = error1;
+
+    % compute the error for the second derivative
+    error2 = abs(spline_prime2_val - second_derivative(0.5));
+    
+    % store the error
+    errors2(i-1) = error2;
+end
+
+%% Part B Cont'd - Plot the Errors
+
+h = Inf(1,m-1);
+
+for q = 2:m
+    h(q-1) = 2^(-q);
+end
+
+loglog(h, errors1)
+xlabel("h")
+ylabel("Errors")
+
+hold on
+
+p = polyfit(log(h), log(errors1), 1);
+y1 = polyval(p, log(h));
+loglog(h, y1)
