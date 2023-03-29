@@ -67,7 +67,7 @@ error_f2prime = abs(spline_val2 - actual_val2);
 % Repeat Part A over the interval [0, 1] with equal node spacings 
 % h = 2^{−m} , m = 2,3,4,…. Try up to m = 16?
 
-m = 16;
+m = 12;
 errors1 = Inf(1, m-1);
 errors2 = Inf(1, m-1);
 
@@ -75,19 +75,23 @@ for i = 2:m
     gap = 2^(-i);
     input = 0:gap:1;
     output = Inf(1, length(input));
+    
     for j = 1:length(input)
         output(j) = func(input(j));
     end
+
     % construct the spline
     s = spline(input, output);
     
     % compute the derivative
     spline_prime = calc_derivative(s);
+
     % Evaluate the derivative of the spline at 0.5
     spline_prime_val = ppval(spline_prime, 0.5);
 
     % compute the second derivative
     spline_prime2 = calc_derivative(spline_prime);
+
     % Evaluate the derivative of the spline at 0.5
     spline_prime2_val = ppval(spline_prime2, 0.5);
 
@@ -104,7 +108,7 @@ for i = 2:m
     errors2(i-1) = error2;
 end
 
-%% Part B Cont'd - Plot the Errors
+%% Part B Cont'd - Plot the Errors for S'(0.5)
 
 h = Inf(1,m-1);
 
@@ -112,12 +116,31 @@ for q = 2:m
     h(q-1) = 2^(-q);
 end
 
+% Plot the Absolute errors with respect to h for s'(0.5)
+% optimal m value is 10
+
 loglog(h, errors1)
+title("Absolute errors of S'(0.5) as a function of h = 2^{-m} for m = 2,...,10")
 xlabel("h")
-ylabel("Errors")
+ylabel("Absolute Error values |S'{0.5} - f'(0.5)|")
 
+p1 = polyfit(log(h), log(errors1), 1);
+y1 = polyval(p1, log(h));
 hold on
+loglog(h, exp(y1))
+legend("Absolute errors", "Least squares line of best fit")
 
-p = polyfit(log(h), log(errors1), 1);
-y1 = polyval(p, log(h));
-loglog(h, y1)
+hold off
+
+%% Part B Cont'd - Plot the Errors for S''(0.5)
+% optimal m value is 12
+loglog(h, errors2)
+title("Absolute errors of S''(0.5) as a function of h = 2^{-m} for m = 2,...,12")
+xlabel("h")
+ylabel("Absolute Error values |S''( 0.5 ) - f''(  0.5 )|")
+
+p2 = polyfit(log(h), log(errors2), 1);
+y2 = polyval(p2, log(h));
+hold on
+loglog(h, exp(y2))
+legend("Absolute errors", "Least squares line of best fit")
